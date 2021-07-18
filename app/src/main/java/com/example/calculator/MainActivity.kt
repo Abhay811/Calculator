@@ -81,13 +81,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnPlus.setOnClickListener {
             sign = "+"
-//            calculate(binding.tvInput.text.toString())
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = value.toString()
             evaluateExpression(sign, true)
             hasDot = false
         }
 
         binding.btnMinus.setOnClickListener {
             sign = "-"
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = value.toString()
             evaluateExpression(sign, true)
             Log.d("Main", sign)
             hasDot = false
@@ -95,12 +98,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnMultiply.setOnClickListener {
             sign = "×"
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = value.toString()
             evaluateExpression(sign, true)
             hasDot = false
         }
 
         binding.btnDivide.setOnClickListener {
             sign = "/"
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = value.toString()
             evaluateExpression(sign, true)
             hasDot = false
         }
@@ -192,7 +199,7 @@ class MainActivity : AppCompatActivity() {
             '-' -> {
                 a - b
             }
-            '*' -> {
+            '×' -> {
                 a * b
             }
             '/' -> {
@@ -217,7 +224,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 
 }
 

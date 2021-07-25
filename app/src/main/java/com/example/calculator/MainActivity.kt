@@ -113,7 +113,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnEqual.setOnClickListener {
-            calculate(binding.tvInput.text.toString())
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = value.toString()
         }
 
         binding.btnBackspace.setOnClickListener {
@@ -142,10 +143,10 @@ class MainActivity : AppCompatActivity() {
 //            val2 = 0
         }
 
-        binding.btnEqual.setOnClickListener {
-            val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = value.toString()
-        }
+//        binding.btnEqual.setOnClickListener {
+//            val value = calculate(binding.tvInput.text.toString())
+//            binding.tvResult.text = value.toString()
+//        }
 
 //        calculate("10 + 2 * 6")
     }
@@ -166,6 +167,7 @@ class MainActivity : AppCompatActivity() {
                 i--
             } else {
                 while (!operators.isEmpty() && precedence(operators.peek()!!) >= precedence(tokens[i])) {
+
                     val v2 = values.peek()!!
                     values.pop()
                     val v1 = values.peek()!!
@@ -179,6 +181,9 @@ class MainActivity : AppCompatActivity() {
             }
             i++
         }
+        Log.d("Main", values.toString())
+        Log.d("Main", operators.toString())
+
         while (!operators.isEmpty()) {
             val v2 = values.peek()!!
             values.pop()
@@ -188,7 +193,9 @@ class MainActivity : AppCompatActivity() {
             operators.pop()
             values.push(applyOp(v1, v2, op))
         }
-        return values.peek()!!
+        val res = values.peek()!!
+        values.pop()
+        return res
     }
 
     private fun applyOp(a: Double, b: Double, op: Char): Double {
@@ -212,7 +219,7 @@ class MainActivity : AppCompatActivity() {
     private fun precedence(op: Char): Int {
         if (op == '+' || op == '-')
             return 1
-        if (op == '*' || op == '/')
+        if (op == '×' || op == '/')
             return 2
         return 0
     }

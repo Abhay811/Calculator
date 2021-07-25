@@ -37,43 +37,47 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnOne.setOnClickListener {
-            if (clickedFirst)
-            {
-                clickedFirst = false
-                binding.tvInput.text = ""
-            }
+            clickedFirst()
             evaluateExpression("1", true)
         }
 
         binding.btnTwo.setOnClickListener {
+            clickedFirst()
             evaluateExpression("2", true)
         }
 
         binding.btnThree.setOnClickListener {
+            clickedFirst()
             evaluateExpression("3", true)
         }
 
         binding.btnFour.setOnClickListener {
+            clickedFirst()
             evaluateExpression("4", true)
         }
 
         binding.btnFive.setOnClickListener {
+            clickedFirst()
             evaluateExpression("5", true)
         }
 
         binding.btnSix.setOnClickListener {
+            clickedFirst()
             evaluateExpression("6", true)
         }
 
         binding.btnSeven.setOnClickListener {
+            clickedFirst()
             evaluateExpression("7", true)
         }
 
         binding.btnEight.setOnClickListener {
+            clickedFirst()
             evaluateExpression("8", true)
         }
 
         binding.btnNine.setOnClickListener {
+            clickedFirst()
             evaluateExpression("9", true)
         }
 
@@ -85,7 +89,6 @@ class MainActivity : AppCompatActivity() {
                     binding.tvInput.text = binding.tvInput.text.toString() + "."
             hasDot = true
         }
-
 
         binding.btnPlus.setOnClickListener {
             sign = "+"
@@ -147,6 +150,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnClear.setOnClickListener {
+            clickedFirst = true
             binding.tvInput.text = "0"
             binding.tvResult.text = ""
             hasDot = false
@@ -157,12 +161,14 @@ class MainActivity : AppCompatActivity() {
 //            val2 = 0
         }
 
-//        binding.btnEqual.setOnClickListener {
-//            val value = calculate(binding.tvInput.text.toString())
-//            binding.tvResult.text = value.toString()
-//        }
-
-//        calculate("10 + 2 * 6")
+    }
+    private fun clickedFirst()
+    {
+        if (clickedFirst)
+        {
+            clickedFirst = false
+            binding.tvInput.text = ""
+        }
     }
 
     private fun calculate(tokens: String):Double {

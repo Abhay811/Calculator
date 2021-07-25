@@ -24,7 +24,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="1948239847294654" />
+        android:text="@string/_0"
+        tools:text="123423414234"/>
 
     <TextView
         android:id="@+id/tvResult"

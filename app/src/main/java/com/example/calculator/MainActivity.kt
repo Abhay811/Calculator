@@ -1,6 +1,7 @@
 package com.example.calculator
 
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     var val1 = ""
     var val2 = ""
     var hasDot = false
+    var clickedFirst = true
     var stack = Stack<Double>()
 
 
@@ -30,10 +32,16 @@ class MainActivity : AppCompatActivity() {
         Log.d("Main", input)
 
         binding.btnZero.setOnClickListener {
+
             evaluateExpression("0", true)
         }
 
         binding.btnOne.setOnClickListener {
+            if (clickedFirst)
+            {
+                clickedFirst = false
+                binding.tvInput.text = ""
+            }
             evaluateExpression("1", true)
         }
 
@@ -82,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnPlus.setOnClickListener {
             sign = "+"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = value.toString()
+            binding.tvResult.text = "= ${value.toString()}"
             evaluateExpression(sign, true)
             hasDot = false
         }
@@ -90,16 +98,15 @@ class MainActivity : AppCompatActivity() {
         binding.btnMinus.setOnClickListener {
             sign = "-"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = value.toString()
+            binding.tvResult.text = "= ${value.toString()}"
             evaluateExpression(sign, true)
-            Log.d("Main", sign)
             hasDot = false
         }
 
         binding.btnMultiply.setOnClickListener {
             sign = "×"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = value.toString()
+            binding.tvResult.text = "= ${value.toString()}"
             evaluateExpression(sign, true)
             hasDot = false
         }
@@ -107,14 +114,18 @@ class MainActivity : AppCompatActivity() {
         binding.btnDivide.setOnClickListener {
             sign = "/"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = value.toString()
+            binding.tvResult.text = "= ${value.toString()}"
             evaluateExpression(sign, true)
             hasDot = false
         }
 
         binding.btnEqual.setOnClickListener {
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = value.toString()
+            binding.tvResult.text = "= ${value.toString()}"
+            binding.tvResult.textSize = 36F
+            binding.tvResult.typeface = Typeface.DEFAULT
+            binding.tvInput.textSize = 28F
+
         }
 
         binding.btnBackspace.setOnClickListener {
@@ -136,9 +147,12 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnClear.setOnClickListener {
-            binding.tvInput.text = ""
+            binding.tvInput.text = "0"
             binding.tvResult.text = ""
             hasDot = false
+            binding.tvInput.textSize = 36F
+            binding.tvResult.textSize = 28F
+            binding.tvResult.typeface = Typeface.create("alpha",Typeface.NORMAL)
 //            val1 = 0
 //            val2 = 0
         }

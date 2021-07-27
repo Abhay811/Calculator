@@ -159,15 +159,30 @@ class MainActivity : AppCompatActivity() {
                 binding.tvInput.text = null
             else
             {
-                val str = binding.tvInput.text.toString()
+                var str = binding.tvInput.text.toString()
                 val len = str.length
                 if (str[len - 1] == '.') {
                     hasDot = false
                     binding.tvInput.text = str.subSequence(0, len - 1)
 
                 }
-                else
-                    binding.tvInput.text = str.subSequence(0, len - 1)
+                else {
+                    str = str.subSequence(0, len - 1).toString()
+                    binding.tvInput.text = str
+                    var value: String = ""
+                    if (str.isEmpty())
+                    {
+                        binding.tvInput.text = ""
+                        binding.tvResult.text = "0"
+                    }
+                    else if (str[str.length - 1] == '+' || str[str.length - 1] == '-' ||
+                                            str[str.length - 1] == '/' || str[str.length - 1] == '×')
+                        value = calculate(str.subSequence(0, len - 2).toString())
+                    else
+                        value = calculate(str) as String
+                    if (value != "")
+                        binding.tvResult.text = "= $value"
+                }
             }
         }
 

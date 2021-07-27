@@ -180,8 +180,7 @@ class MainActivity : AppCompatActivity() {
             binding.tvInput.textSize = 36F
             binding.tvResult.textSize = 28F
             binding.tvResult.typeface = Typeface.create("alpha",Typeface.NORMAL)
-//            val1 = 0
-//            val2 = 0
+
         }
 
     }

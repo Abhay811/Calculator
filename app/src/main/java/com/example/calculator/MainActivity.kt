@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         Log.d("Main", input)
 
         binding.btnZero.setOnClickListener {
-
-            evaluateExpression("0", true)
+            if (binding.tvInput.text != "0")
+                evaluateExpression("0", true)
         }
 
         binding.btnOne.setOnClickListener {
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnPlus.setOnClickListener {
             sign = "+"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= ${value.toString()}"
+            binding.tvResult.text = "= $value"
             evaluateExpression(sign, true)
             hasDot = false
         }
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnMinus.setOnClickListener {
             sign = "-"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= ${value.toString()}"
+            binding.tvResult.text = "= $value"
             evaluateExpression(sign, true)
             hasDot = false
         }
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnMultiply.setOnClickListener {
             sign = "×"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= ${value.toString()}"
+            binding.tvResult.text = "= $value"
             evaluateExpression(sign, true)
             hasDot = false
         }
@@ -117,14 +117,17 @@ class MainActivity : AppCompatActivity() {
         binding.btnDivide.setOnClickListener {
             sign = "/"
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= ${value.toString()}"
+            binding.tvResult.text = "= $value"
             evaluateExpression(sign, true)
             hasDot = false
         }
 
         binding.btnEqual.setOnClickListener {
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= ${value.toString()}"
+            if (value.length > 10)
+                binding.tvResult.text = "= ${value.substring(1..9)}"
+            else
+                binding.tvResult.text = "= $value"
             binding.tvResult.textSize = 36F
             binding.tvResult.typeface = Typeface.DEFAULT
             binding.tvInput.textSize = 28F
@@ -171,7 +174,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun calculate(tokens: String):Double {
+    private fun calculate(tokens: String):String {
 
         val values = Stack<Double>()
         val operators = Stack<Char>()
@@ -201,8 +204,6 @@ class MainActivity : AppCompatActivity() {
             }
             i++
         }
-        Log.d("Main", values.toString())
-        Log.d("Main", operators.toString())
 
         while (!operators.isEmpty()) {
             val v2 = values.peek()!!
@@ -215,7 +216,7 @@ class MainActivity : AppCompatActivity() {
         }
         val res = values.peek()!!
         values.pop()
-        return res
+        return res.toString()
     }
 
     private fun applyOp(a: Double, b: Double, op: Char): Double {

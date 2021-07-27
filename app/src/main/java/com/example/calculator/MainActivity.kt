@@ -41,46 +41,64 @@ class MainActivity : AppCompatActivity() {
         binding.btnOne.setOnClickListener {
             clickedFirst()
             evaluateExpression("1", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnTwo.setOnClickListener {
             clickedFirst()
             evaluateExpression("2", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnThree.setOnClickListener {
             clickedFirst()
             evaluateExpression("3", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnFour.setOnClickListener {
             clickedFirst()
             evaluateExpression("4", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnFive.setOnClickListener {
             clickedFirst()
             evaluateExpression("5", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnSix.setOnClickListener {
             clickedFirst()
             evaluateExpression("6", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnSeven.setOnClickListener {
             clickedFirst()
             evaluateExpression("7", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnEight.setOnClickListener {
             clickedFirst()
             evaluateExpression("8", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnNine.setOnClickListener {
             clickedFirst()
             evaluateExpression("9", true)
+            val value = calculate(binding.tvInput.text.toString())
+            binding.tvResult.text = "= $value"
         }
 
         binding.btnDecimal.setOnClickListener {
@@ -237,7 +255,6 @@ class MainActivity : AppCompatActivity() {
                     0.0
                 else
                     a / b
-
             }
             else -> 0.0
         }

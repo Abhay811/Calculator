@@ -11,14 +11,9 @@ import com.example.calculator.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var num1: Double = 0.0
-    var num2: Double = 0.0
     private var sign = ""
-    var val1 = ""
-    var val2 = ""
     var hasDot = false
     var clickedFirst = true
-    var stack = Stack<Double>()
 
 
     @SuppressLint("SetTextI18n")
@@ -169,7 +164,7 @@ class MainActivity : AppCompatActivity() {
                 else {
                     str = str.subSequence(0, len - 1).toString()
                     binding.tvInput.text = str
-                    var value: String = ""
+                    var value = ""
                     if (str.isEmpty())
                     {
                         binding.tvInput.text = ""
@@ -179,7 +174,7 @@ class MainActivity : AppCompatActivity() {
                                             str[str.length - 1] == '/' || str[str.length - 1] == '×')
                         value = calculate(str.subSequence(0, len - 2).toString())
                     else
-                        value = calculate(str) as String
+                        value = calculate(str)
                     if (value != "")
                         binding.tvResult.text = "= $value"
                 }

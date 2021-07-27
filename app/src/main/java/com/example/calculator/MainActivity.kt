@@ -32,8 +32,10 @@ class MainActivity : AppCompatActivity() {
         Log.d("Main", input)
 
         binding.btnZero.setOnClickListener {
-            if (binding.tvInput.text != "0")
+            if (binding.tvInput.text.toString() != "0") {
+                Log.d("Main", binding.tvInput.text.toString())
                 evaluateExpression("0", true)
+            }
         }
 
         binding.btnOne.setOnClickListener {
@@ -231,7 +233,11 @@ class MainActivity : AppCompatActivity() {
                 a * b
             }
             '/' -> {
-                a / b
+                if (b == 0.0)
+                    0.0
+                else
+                    a / b
+
             }
             else -> 0.0
         }

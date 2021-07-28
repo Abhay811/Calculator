@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                     binding.tvInput.text = "0."
                 else
                     binding.tvInput.text = binding.tvInput.text.toString() + "."
+
             hasDot = true
         }
 
@@ -194,8 +195,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun clickedFirst()
-    {
+    private fun clickedFirst() {
         if (clickedFirst)
         {
             clickedFirst = false
@@ -209,13 +209,34 @@ class MainActivity : AppCompatActivity() {
         val operators = Stack<Char>()
         var i = 0
         while(i in tokens.indices) {
-            if (tokens[i].isDigit()) {
-                var value = 0
-                while (i < tokens.length && tokens[i].isDigit()) {
-                    value = value * 10 + tokens[i].digitToInt()
+            var c = 0
+            if (tokens[i].isDigit() || tokens[i] == '.') {
+                var value = 0.0
+                var flag = false
+                while (i < tokens.length && (tokens[i].isDigit() || tokens[i] == '.')) {
+                    if (tokens[i] == '.') {
+                        flag = true
+                        Log.d("Main", tokens)
+                        i++
+                        continue
+                    }
+                    if (flag) {
+                        c++
+                        var t = c
+                        var s = 1
+                        while(t > 0)
+                        {
+                            s *= 10
+                            t--
+                        }
+                        value = value * s + tokens[i].digitToInt()
+                        value /= s
+                    }
+                    else
+                        value = value * 10 + tokens[i].digitToInt()
                     i++
                 }
-                values.push(value.toDouble())
+                values.push(value)
                 i--
             } else {
                 while (!operators.isEmpty() && precedence(operators.peek()!!) >= precedence(tokens[i])) {

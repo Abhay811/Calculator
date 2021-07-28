@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var sign = ""
-    var hasDot = false
-    var clickedFirst = true
+    private var hasDot = false
+    private var clickedFirst = true
 
 
     @SuppressLint("SetTextI18n")
@@ -51,7 +51,11 @@ class MainActivity : AppCompatActivity() {
             clickedFirst()
             evaluateExpression("3", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnFour.setOnClickListener {
@@ -72,14 +76,22 @@ class MainActivity : AppCompatActivity() {
             clickedFirst()
             evaluateExpression("6", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnSeven.setOnClickListener {
             clickedFirst()
             evaluateExpression("7", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnEight.setOnClickListener {
@@ -93,7 +105,11 @@ class MainActivity : AppCompatActivity() {
             clickedFirst()
             evaluateExpression("9", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnDecimal.setOnClickListener {

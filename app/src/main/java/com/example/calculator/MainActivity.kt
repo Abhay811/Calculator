@@ -37,14 +37,22 @@ class MainActivity : AppCompatActivity() {
             clickedFirst()
             evaluateExpression("1", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnTwo.setOnClickListener {
             clickedFirst()
             evaluateExpression("2", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnThree.setOnClickListener {
@@ -62,14 +70,22 @@ class MainActivity : AppCompatActivity() {
             clickedFirst()
             evaluateExpression("4", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnFive.setOnClickListener {
             clickedFirst()
             evaluateExpression("5", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnSix.setOnClickListener {
@@ -81,6 +97,7 @@ class MainActivity : AppCompatActivity() {
             }
             else
                 binding.tvResult.text = "= $value"
+
         }
 
         binding.btnSeven.setOnClickListener {
@@ -98,7 +115,11 @@ class MainActivity : AppCompatActivity() {
             clickedFirst()
             evaluateExpression("8", true)
             val value = calculate(binding.tvInput.text.toString())
-            binding.tvResult.text = "= $value"
+            if (value.length > 10) {
+                binding.tvResult.text = "= ${value.substring(0..9)}"
+            }
+            else
+                binding.tvResult.text = "= $value"
         }
 
         binding.btnNine.setOnClickListener {
@@ -157,7 +178,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnEqual.setOnClickListener {
             val value = calculate(binding.tvInput.text.toString())
             if (value.length > 10)
-                binding.tvResult.text = "= ${value.substring(1..9)}"
+                binding.tvResult.text = "= ${value.substring(0..9)}"
             else
                 binding.tvResult.text = "= $value"
             binding.tvResult.textSize = 36F
@@ -316,7 +337,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun evaluateExpression(string: String, clear: Boolean) {
         if (clear) {
-
             binding.tvInput.append(string)
 
         }
